@@ -14,7 +14,7 @@ duracao = 4
 freqDeAmostragem = samplerate
 y, x = signal.generateSin(14000, 1, duracao, freqDeAmostragem)
 
-audio_demo = audio*x[:102665]
+audio_demo = audio*x[:132300]
 xf, yf = signal.calcFFT(audio_demo, samplerate)
 plt.figure("F(y)")
 plt.plot(xf,yf)

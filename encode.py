@@ -12,7 +12,7 @@ from funcoes_LPF import *
 
 audio, samplerate = sf.read('audio/musicamuitofoda.wav')
 
-audio = audio*(1/0.15)
+audio = audio[:132300]
 
 freqDeAmostragem = 44100
 duracao = 3
@@ -22,7 +22,7 @@ inicio = 0
 fim = 4
 numPontos = numAmostras
 
-t = np.linspace(inicio,fim,numPontos)[:102665]
+t = np.linspace(inicio,fim,numPontos)
 # plot do gravico  áudio vs tempo!
 plt.title('Audio normalizado')
 plt.plot(t, audio[:,0])
@@ -32,7 +32,7 @@ signal= signalMeu()
 fs = freqDeAmostragem
 
 
-filtrado = filtro(audio[:,0], samplerate, 14000)
+filtrado = filtro(audio[:,0], samplerate, 4000)
 sd.play(filtrado, samplerate)
 sd.wait()
 
@@ -51,7 +51,7 @@ plt.show()
 
 y, x = signal.generateSin(14000, 1, duracao, freqDeAmostragem)
 
-X=x[:102665]+filtrado*x[:102665]
+X=filtrado
 sd.play(X, samplerate)
 sd.wait()
 
