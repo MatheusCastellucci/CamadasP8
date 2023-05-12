@@ -13,7 +13,7 @@ from funcoes_LPF import *
 audio, samplerate = sf.read('audio/musicamuitofoda.wav')
 
 audio = audio[:132300]
-
+audio = audio / np.max(np.abs(audio))
 freqDeAmostragem = 44100
 duracao = 3
 numAmostras = freqDeAmostragem*duracao
@@ -51,7 +51,7 @@ plt.show()
 
 y, x = signal.generateSin(14000, 1, duracao, freqDeAmostragem)
 
-X=filtrado
+X=filtrado*x
 sd.play(X, samplerate)
 sd.wait()
 
@@ -61,7 +61,7 @@ plt.show()
 
 xf, yf = signal.calcFFT(X, fs)
 plt.figure("F(y)")
-plt.plot(xf,yf)
+plt.plot((xf+2000),yf)
 plt.grid()
 plt.title('Fourier audio modulado')
 plt.show()
